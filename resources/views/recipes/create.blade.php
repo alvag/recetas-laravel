@@ -71,6 +71,17 @@
                     @enderror
                 </div>
 
+                <div class="form-group mt-3">
+                    <label for="image">Selecciona una imagen</label>
+                    <input type="file"
+                           class="form-control @error('image') is-invalid @enderror"
+                           name="image" id="image">
+
+                    @error('image')
+                    <span class="invalid-feedback d-block font-weight-bold" role="alert">{{$message}}</span>
+                    @enderror
+                </div>
+
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit">Agregar Receta</button>
                 </div>

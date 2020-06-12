@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -34,9 +35,19 @@ class RecipeController extends Controller
             'category_id' => 'required',
             'preparation' => 'required',
             'ingredients' => 'required',
+//            'image' => 'required|image',
         ];
 
-        Recipe::create( $request->validate( $rules ) );
+        $data = $request->validate( $rules );
+
+        Recipe::create( [
+            'title' => $data[ 'title' ],
+            'category_id' => $data[ 'category_id' ],
+            'preparation' => $data[ 'preparation' ],
+            'ingredients' => $data[ 'ingredients' ],
+            'user_id' => Auth::user()->id,
+            'image' => 'image.jpg'
+        ] );
         return redirect()->route( 'recipes.index' );
     }
 
