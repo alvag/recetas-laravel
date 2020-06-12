@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,8 @@ Route::get( '/', function () {
     return view( 'welcome' );
 } );
 
-Route::get( 'recetas', 'RecipeController' );
+Route::get( 'recetas', 'RecipeController@index' )->name( 'recipes.index' );
+Route::get( 'recetas/create', 'RecipeController@create' )->name( 'recipes.create' );
 
 Auth::routes();
 
