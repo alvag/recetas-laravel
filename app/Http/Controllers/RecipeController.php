@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Recipe;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'auth' );
+    }
 
     public function index()
     {
@@ -16,13 +21,19 @@ class RecipeController extends Controller
 
     public function create()
     {
-        return view( 'recipes.create' );
+        $categories = Category::all()->pluck( 'name', 'id' );
+        return view( 'recipes.create' )->with( [
+            'categories' => $categories
+        ] );
     }
 
     public function store( Request $request )
     {
         $rules = [
-            'title' => 'required|min:6'
+            'title' => 'required|min:6',
+            'category_id' => 'required',
+            'preparation' => 'required',
+            'ingredients' => 'required',
         ];
 
         Recipe::create( $request->validate( $rules ) );
