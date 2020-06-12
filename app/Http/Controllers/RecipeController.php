@@ -19,15 +19,14 @@ class RecipeController extends Controller
         return view( 'recipes.create' );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store( Request $request )
     {
-        //
+        $rules = [
+            'title' => 'required|min:6'
+        ];
+
+        Recipe::create( $request->validate( $rules ) );
+        return redirect()->route( 'recipes.index' );
     }
 
     /**

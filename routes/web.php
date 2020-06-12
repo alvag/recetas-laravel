@@ -20,6 +20,7 @@ Route::get( '/', function () {
 
 Route::get( 'recetas', 'RecipeController@index' )->name( 'recipes.index' );
 Route::get( 'recetas/create', 'RecipeController@create' )->name( 'recipes.create' );
+Route::post( 'recetas', 'RecipeController@store' )->name( 'recipes.store' );
 
 Auth::routes();
 

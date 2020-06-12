@@ -13,10 +13,11 @@ class CreateRecipesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipes', function (Blueprint $table) {
+        Schema::create( 'recipes', function ( Blueprint $table ) {
             $table->id();
+            $table->string( 'title' );
             $table->timestamps();
-        });
+        } );
     }
 
     /**
@@ -26,6 +27,6 @@ class CreateRecipesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipes');
+        Schema::dropIfExists( 'recipes' );
     }
 }
