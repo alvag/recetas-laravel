@@ -40,13 +40,15 @@ class RecipeController extends Controller
 
         $data = $request->validate( $rules );
 
+        $image = $request[ 'image' ]->store( 'upload/recipes', 'public' );
+
         Recipe::create( [
             'title' => $data[ 'title' ],
             'category_id' => $data[ 'category_id' ],
             'preparation' => $data[ 'preparation' ],
             'ingredients' => $data[ 'ingredients' ],
             'user_id' => Auth::user()->id,
-            'image' => 'image.jpg'
+            'image' => $image
         ] );
         return redirect()->route( 'recipes.index' );
     }

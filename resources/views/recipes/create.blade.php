@@ -14,7 +14,7 @@
 
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <form action="{{route('recipes.store')}}" method="POST">
+            <form action="{{route('recipes.store')}}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="title">Título</label>
