@@ -4,6 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -19,6 +22,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.use(VueSweetalert2);
+Vue.config.ignoredElements = ['trix-editor'];
+
+Vue.component('delete-recipe', require('./components/DeleteRecipe.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**

@@ -17,11 +17,23 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Pizza</td>
-                <td>Pizzas</td>
-                <td></td>
-            </tr>
+            @foreach($recipes as $recipe)
+                <tr>
+                    <td>{{$recipe->title}}</td>
+                    <td>{{$recipe->category->name}}</td>
+                    <td>
+                        {{--<form method="POST" class="d-inline"
+                              action="{{route('recipes.destroy', ['recipe'=>$recipe->id])}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>--}}
+                        <delete-recipe recipe="{{$recipe->id}}"></delete-recipe>
+                        <a href="{{route('recipes.edit', ['recipe' => $recipe->id])}}" class="btn btn-dark btn-sm">Editar</a>
+                        <a href="{{route('recipes.show', ['recipe' => $recipe->id])}}" class="btn btn-success btn-sm">Ver</a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
